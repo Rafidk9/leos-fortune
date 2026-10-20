@@ -1,5 +1,5 @@
 // Offline cache for Leo's Fortune. Bump VERSION whenever index.html changes.
-const VERSION = 'lf-v2';
+const VERSION = 'lf-v3';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
