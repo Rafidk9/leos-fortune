@@ -350,6 +350,24 @@ const THEMES = {
       { c: '#9b5b3b', base: 615, amp: 48, terms: 4, f: 0.35, trees: 'cactus', tc: '#874e31', td: 10, ts: 1.4, haze: 'rgba(240,190,140,0.18)' }],
     rock: ['#c6723f', '#a75b31', '#e09462', '#7e4121'], strata: true, deep: 'rgba(72,26,10,0.56)', edge: 'rgba(72,30,10,0.45)',
     grass: ['#8d8236', '#bba84a', '#e6d27a'], sparse: true, fog: '245,206,162', motes: 'sand', decor: 'canyon', dark: 0, wood: '#946035'
+  },
+  frost: {
+    sky: ['#7fa9d6', '#cfe3f2', '#f5f8fb'], sun: [0.7, 0.2, 'rgba(255,250,235,'], rays: true, clouds: 'rgba(255,255,255,',
+    layers: [
+      { c: '#b8cce0', base: 440, amp: 150, terms: 5, ridge: true, f: 0.06, haze: 'rgba(235,243,250,0.75)' },
+      { c: '#8fa9c0', base: 520, amp: 50, terms: 4, trees: 'pine', tc: '#7d98b0', td: 70, ts: 0.9, f: 0.17, haze: 'rgba(225,236,246,0.5)' },
+      { c: '#5f7f99', base: 600, amp: 38, terms: 4, trees: 'pine', tc: '#557590', td: 44, ts: 1.5, f: 0.35, haze: 'rgba(215,230,242,0.22)' }],
+    rock: ['#7b8796', '#606b79', '#9aa6b4', '#454e5a'], deep: 'rgba(20,28,40,0.6)', edge: 'rgba(25,32,45,0.5)',
+    grass: ['#c6d8e4', '#e6f0f6', '#ffffff'], fog: '225,236,246', motes: 'snow', decor: 'frost', dark: 0, wood: '#8a6a4a'
+  },
+  night: {
+    sky: ['#0b1030', '#1d2a5a', '#3b3f73'], sun: [0.78, 0.18, 'rgba(225,232,255,'], rays: false, clouds: 'rgba(120,135,190,',
+    layers: [
+      { c: '#26305a', base: 450, amp: 120, terms: 5, ridge: true, f: 0.06, haze: 'rgba(60,70,120,0.6)' },
+      { c: '#1b2448', base: 520, amp: 48, terms: 4, trees: 'pine', tc: '#18203f', td: 80, ts: 0.9, f: 0.17, haze: 'rgba(50,60,105,0.45)' },
+      { c: '#121a36', base: 600, amp: 38, terms: 4, trees: 'round', tc: '#10172f', td: 40, ts: 1.5, f: 0.35, haze: 'rgba(40,50,90,0.2)' }],
+    rock: ['#4a4258', '#383145', '#5f566f', '#26212f'], deep: 'rgba(8,6,16,0.66)', edge: 'rgba(10,8,18,0.55)',
+    grass: ['#24474a', '#3a6b62', '#5d9a80'], fog: '40,50,90', motes: 'fireflies', decor: 'woods', dark: 0.55, wood: '#6d5236'
   }
 };
 
@@ -471,6 +489,108 @@ const LEVELS = [
     coins: [...line(200, 670, 640, 670, 5), ...line(760, 600, 760, 300, 4), ...line(990, 372, 1150, 372, 3), ...arc(1330, 400, 150, 160, 20, 4), ...line(1490, 372, 1580, 372, 2), ...line(1700, 520, 1700, 880, 4), ...line(1850, 922, 2280, 922, 8),
       ...line(2750, 895, 3190, 885, 5), ...line(3440, 872, 3560, 872, 2), [3750, 872], ...line(3950, 872, 4090, 872, 3), ...line(4340, 972, 4540, 972, 3), ...line(4885, 920, 4885, 540, 5),
       ...line(5050, 572, 5170, 572, 3), ...arc(5242, 600, 95, 150, 30, 3), ...line(5330, 572, 5420, 572, 2), ...arc(5502, 600, 95, 150, 30, 3), ...line(5590, 572, 5800, 540, 3), ...arc(5922, 560, 95, 150, 30, 3), ...line(6010, 532, 6100, 532, 2)]
+  }),
+  () => ({
+    name: 'Frozen Peaks', theme: 'frost', par: 120, start: [150, 770], bounds: [-180, 6600, -300, 1150], death: 1300,
+    terrain: [R(-420, -800, 240, 3400),
+      G([-200, 800], [900, 800], [900, 700], [1500, 700]),
+      G([1800, 700], [2400, 700], [2400, 400], [3200, 400]),
+      G([3950, 400], [4500, 400], [4500, 900], [5100, 900], [5100, 450], [5500, 450], [5900, 600], [6600, 600]),
+      R(6550, -800, 300, 3400)],
+    shrooms: [{ x: 2260, y: 700 }],
+    spikes: [{ x: 2700, y: 400, w: 84 }],
+    fallers: [{ x: 3290, y: 390, w: 130 }, { x: 3520, y: 370, w: 130 }, { x: 3750, y: 390, w: 130 }],
+    fans: [{ x: 4900, y: 350, w: 150, h: 550 }],
+    saws: [{ x: 5300, y: 380, r: 45 }],
+    signs: [{ x: 2120, y: 700, t: 'Bounce on the mushroom and puff up' }, { x: 3120, y: 400, t: 'Icy ledges crumble. Keep rolling!' }, { x: 4420, y: 400, t: 'Drop down and ride the fan back up' }],
+    checkpoints: [[1850, 700], [2500, 400], [4000, 400], [5150, 450]],
+    goal: [6300, 600],
+    coins: [...line(300, 770, 800, 770, 5), ...line(950, 672, 1450, 672, 5), ...arc(1650, 690, 170, 155, 25, 6), ...line(1900, 672, 2150, 672, 4), ...line(2260, 600, 2260, 300, 4),
+      ...line(2480, 372, 2620, 372, 3), ...arc(2742, 400, 95, 150, 30, 3), ...line(2850, 372, 3150, 372, 4), [3355, 352], [3585, 330], [3815, 352], ...line(4000, 372, 4400, 372, 5),
+      ...line(4560, 870, 4840, 870, 4), ...line(4975, 820, 4975, 420, 5), ...line(5150, 422, 5220, 422, 2), [5300, 438], ...line(5380, 422, 5480, 422, 2), ...line(5600, 490, 5850, 580, 4), ...line(5950, 572, 6200, 572, 4)]
+  }),
+  () => ({
+    name: 'Moonlit Grove', theme: 'night', par: 135, start: [150, 770], bounds: [-180, 6400, -300, 1350], death: 1500,
+    terrain: [R(-420, -800, 240, 3400),
+      G([-200, 800], [2000, 800], [2000, 1100], [2900, 1100], [2900, 800], [3600, 800]),
+      R(2200, 200, 300, 600),
+      G([4600, 820], [6400, 820]),
+      R(6350, -800, 300, 3400)],
+    boulders: [{ x: 700, y: 760, r: 38 }],
+    buttons: [{ x: 1150, y: 800, w: 110, gate: 'g1', need: 3.5 }],
+    gates: [{ id: 'g1', x: 1260, y: 420, w: 56, h: 380 }],
+    breakables: [{ x: 2000, y: 800, w: 200, h: 50 }],
+    shrooms: [{ x: 2780, y: 1100 }],
+    spikes: [{ x: 3300, y: 800, w: 84 }],
+    movers: [{ x: 3700, y: 820, w: 170, h: 26, dx: 480, dy: 0, period: 4.6 }],
+    saws: [{ path: [[4900, 540], [4900, 780]], period: 2.6, r: 40, phase: 0 }, { path: [[5150, 540], [5150, 780]], period: 2.6, r: 40, phase: Math.PI }],
+    lamps: [[300, 560], [1000, 560], [1700, 560], [2600, 900], [3150, 560], [3900, 600], [4500, 600], [5020, 520], [5600, 580], [6100, 580]],
+    signs: [{ x: 420, y: 800, t: 'Roll the boulder onto the switch' }, { x: 1850, y: 800, t: 'Jump, then press ↓ to smash through' }, { x: 4700, y: 820, t: 'Wait for the saws to rise' }],
+    checkpoints: [[1400, 800], [2950, 800], [4700, 820]],
+    goal: [6100, 820],
+    coins: [...line(250, 770, 560, 770, 4), ...line(1360, 770, 1860, 770, 5), ...line(2050, 1072, 2700, 1072, 7), ...line(2780, 1000, 2780, 860, 3), ...line(2960, 772, 3200, 772, 3), ...arc(3342, 800, 95, 150, 30, 3),
+      ...line(3450, 772, 3560, 772, 2), ...line(3760, 790, 4300, 790, 6), ...line(4650, 792, 4800, 792, 2), [4900, 792], [5025, 792], [5150, 792], ...line(5300, 792, 5950, 792, 7)]
+  }),
+  () => ({
+    name: 'Crystal Depths', theme: 'mine', par: 130, start: [150, 770], bounds: [-180, 6600, -200, 950], death: 1350,
+    terrain: [R(-420, -1200, 240, 3600),
+      C([-200, 430], [800, 440], [1200, 430], [1280, 450], [1300, 764], [1700, 764], [1720, 450], [2400, 440], [3000, 430], [3600, 440], [3750, 250], [3850, 100], [5000, 90], [6000, 140], [6600, 140]),
+      G([-200, 800], [2400, 800]),
+      G([3150, 800], [4130, 800], [4130, 420], [5000, 420]),
+      G([5710, 440], [6600, 440]),
+      R(6550, -1200, 300, 3600)],
+    fallers: [{ x: 2490, y: 790, w: 130 }, { x: 2720, y: 770, w: 130 }, { x: 2950, y: 790, w: 130 }, { x: 5080, y: 430, w: 120 }, { x: 5300, y: 410, w: 120 }, { x: 5520, y: 430, w: 120 }],
+    spikes: [{ x: 900, y: 800, w: 84 }, { x: 3500, y: 800, w: 84 }],
+    fans: [{ x: 3970, y: 260, w: 150, h: 540 }],
+    saws: [{ orbit: [4550, 340], R: 90, speed: 1.7, r: 36 }],
+    lamps: [[200, 540], [700, 540], [1500, 600], [2100, 530], [2800, 520], [3400, 545], [4300, 300], [4800, 250], [5400, 260], [6100, 300]],
+    signs: [{ x: 1180, y: 800, t: 'Shrink to squeeze through the crack' }, { x: 3850, y: 800, t: 'Puff up over the fan' }],
+    checkpoints: [[1800, 800], [3250, 800], [4250, 420], [5800, 440]],
+    goal: [6350, 440],
+    coins: [...line(300, 770, 800, 770, 5), ...arc(942, 800, 95, 150, 30, 3), ...line(1050, 770, 1200, 770, 2), ...line(1340, 786, 1660, 786, 5), ...line(1800, 770, 2350, 770, 6), [2555, 752], [2785, 730], [3015, 752],
+      ...line(3200, 770, 3400, 770, 3), ...arc(3542, 800, 95, 150, 30, 3), ...line(3650, 770, 3900, 770, 3), ...line(4045, 720, 4045, 330, 6), ...line(4200, 392, 4400, 392, 3), ...arc(4550, 420, 150, 160, 20, 4), ...line(4700, 392, 4950, 392, 3),
+      [5140, 390], [5360, 370], [5580, 390], ...line(5760, 412, 6250, 412, 6)]
+  }),
+  () => ({
+    name: 'Sky Ruins', theme: 'sunset', par: 120, start: [100, 670], bounds: [-180, 6400, -700, 980], death: 1300,
+    terrain: [R(-420, -1200, 240, 3600),
+      ISL(-300, 700, 700, 300, 21), ISL(850, 1300, 420, 220, 22), ISL(1600, 2000, 520, 220, 23), ISL(2200, 2700, 650, 240, 24), ISL(2800, 3400, 300, 230, 25),
+      ISL(4050, 4700, 380, 260, 26), ISL(5000, 5250, 560, 160, 27), ISL(5450, 6400, 400, 280, 28),
+      R(6350, -1200, 300, 3600)],
+    shrooms: [{ x: 560, y: 700 }],
+    fans: [{ x: 2540, y: 110, w: 150, h: 540 }, { x: 5080, y: 180, w: 130, h: 380 }],
+    movers: [{ x: 3450, y: 480, w: 150, h: 26, dx: 0, dy: -200, period: 3.4 }, { x: 3750, y: 300, w: 150, h: 26, dx: 0, dy: 200, period: 3.4 }],
+    saws: [{ path: [[4250, 342], [4460, 342]], period: 3, r: 38 }],
+    spikes: [{ x: 5700, y: 400, w: 84 }],
+    signs: [{ x: 330, y: 700, t: 'Bounce up to the floating ruins' }, { x: 2400, y: 650, t: 'Puff up and let the wind carry you' }],
+    checkpoints: [[1700, 520], [2900, 300], [4150, 380], [5550, 400]],
+    goal: [6100, 400],
+    coins: [...line(200, 670, 440, 670, 3), ...line(560, 600, 560, 330, 4), ...line(900, 392, 1250, 392, 4), ...arc(1450, 450, 150, 160, 20, 4), ...line(1650, 492, 1950, 492, 4), ...line(2250, 622, 2480, 622, 3),
+      ...line(2615, 560, 2615, 180, 5), ...line(2850, 272, 3350, 272, 5), [3525, 230], [3825, 250], ...line(4100, 352, 4200, 352, 2), ...line(4500, 352, 4650, 352, 2), ...arc(4850, 450, 150, 160, 20, 3),
+      ...line(5145, 500, 5145, 260, 4), ...line(5300, 260, 5420, 330, 3), ...line(5500, 372, 5650, 372, 3), ...arc(5742, 400, 95, 150, 30, 3), ...line(5850, 372, 6000, 372, 3)]
+  }),
+  () => ({
+    name: 'Golden Hoard', theme: 'canyon', par: 150, start: [150, 670], bounds: [-180, 6700, -400, 1160], death: 1450,
+    terrain: [R(-420, -1200, 240, 3800),
+      G([-200, 700], [1000, 700], [1000, 600], [1700, 600]),
+      G([2000, 620], [2600, 620], [2600, 1000], [3800, 1000], [3800, 620], [4600, 620]),
+      R(2800, 220, 300, 400),
+      G([5350, 620], [6700, 620]),
+      R(6650, -1200, 300, 3800)],
+    saws: [{ orbit: [1420, 520], R: 90, speed: 1.7, r: 36 }],
+    breakables: [{ x: 2600, y: 620, w: 200, h: 50 }],
+    boulders: [{ x: 2950, y: 960, r: 40 }],
+    buttons: [{ x: 3380, y: 1000, w: 120, gate: 'g', need: 3.5 }],
+    gates: [{ id: 'g', x: 3500, y: 620, w: 56, h: 380 }],
+    fans: [{ x: 3620, y: 520, w: 150, h: 480 }],
+    fallers: [{ x: 4690, y: 610, w: 130 }, { x: 4920, y: 590, w: 130 }, { x: 5150, y: 610, w: 130 }],
+    spikes: [{ x: 5600, y: 620, w: 84 }, { x: 5860, y: 620, w: 84 }],
+    signs: [{ x: 1100, y: 600, t: 'The thief\'s hoard is close…' }, { x: 2450, y: 620, t: 'Smash down, then push the boulder' }],
+    checkpoints: [[1100, 600], [2700, 1000], [3900, 620], [5450, 620]],
+    goal: [6400, 620],
+    coins: [...line(250, 670, 900, 670, 6), ...line(1050, 572, 1200, 572, 3), ...arc(1420, 600, 150, 160, 20, 4), ...line(1580, 572, 1670, 572, 2), ...arc(1850, 620, 170, 155, 25, 5), ...line(2050, 592, 2450, 592, 5),
+      ...line(2700, 700, 2700, 900, 3), ...line(2700, 972, 2850, 972, 3), ...line(3100, 972, 3330, 972, 3), ...line(3695, 920, 3695, 560, 5), ...line(3900, 592, 4500, 592, 6),
+      [4755, 572], [4985, 550], [5215, 572], ...line(5400, 592, 5520, 592, 2), ...arc(5642, 620, 95, 150, 30, 3), ...line(5750, 592, 5800, 592, 2), ...arc(5902, 620, 95, 150, 30, 3), ...line(6000, 592, 6300, 592, 4)]
   })
 ];
 
@@ -667,6 +787,13 @@ function makeDecorSprites(th) {
       mid.push(sprite(30, 20, stone), sprite(40, 26, (g, w, h) => bush(g, w, h, ['#7b7a3a', '#9a9548', '#bdb75f'])), sprite(24, 16, stone));
       front.length = 0; front.push(sprite(36, 22, (g, w, h) => tuft(g, w, h, ['#a7963f', '#cbb757', '#e6d27a'])));
       break;
+    case 'frost': {
+      const snowy = (g, w, h, dark) => { pine(g, w, h, dark); g.fillStyle = '#f4f9fc'; for (let i = 0; i < 4; i++) { const y = h * (0.08 + i * 0.17), ww = w * (0.25 + i * 0.13) * 0.42; g.beginPath(); g.moveTo(w / 2, y); g.lineTo(w / 2 + ww, y + h * 0.1); g.lineTo(w / 2 - ww, y + h * 0.1); g.fill(); } };
+      back.push(sprite(110, 240, (g, w, h) => snowy(g, w, h, '#244a40')), sprite(90, 190, (g, w, h) => snowy(g, w, h, '#1f4038')), sprite(90, 55, (g, w, h) => bush(g, w, h, ['#c9dbe6', '#e3eef4', '#ffffff'])));
+      mid.push(sprite(30, 30, (g, w, h) => crystal(g, w, h, '#9fdcff')), sprite(30, 20, stone), sprite(26, 24, (g, w, h) => crystal(g, w, h, '#c8ecff')));
+      front.length = 0; front.push(sprite(44, 22, (g, w, h) => tuft(g, w, h, G3)));
+      break;
+    }
   }
   return { back, mid, front };
 }
@@ -1128,7 +1255,7 @@ function finishLevel() {
 function part(o) { return Object.assign({ x: 0, y: 0, vx: 0, vy: 0, life: 1, max: 0, size: 4, color: '#fff', g: 0, drag: 0, type: 'dot', rot: 0, vr: 0, add: false }, o, { max: o.life || 1 }); }
 function emitFur(L, power) {
   const a = Math.random() * TAU, v = (80 + Math.random() * 260) * power;
-  W.parts.push(part({ x: L.x + Math.cos(a) * L.r * 0.8, y: L.y + Math.sin(a) * L.r * 0.8, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 60, life: 0.6 + Math.random() * 0.7, size: 5 + Math.random() * 6, color: Math.random() < 0.5 ? '#6b4a35' : '#a57a55', type: 'fur', g: 220, drag: 2.5, rot: Math.random() * 6, vr: (Math.random() - 0.5) * 10 }));
+  W.parts.push(part({ x: L.x + Math.cos(a) * L.r * 0.8, y: L.y + Math.sin(a) * L.r * 0.8, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 60, life: 0.6 + Math.random() * 0.7, size: 5 + Math.random() * 6, color: Math.random() < 0.5 ? '#2f6e2a' : '#6fb85a', type: 'fur', g: 220, drag: 2.5, rot: Math.random() * 6, vr: (Math.random() - 0.5) * 10 }));
 }
 function dustBurst(x, y, n, p) {
   for (let i = 0; i < n; i++) W.parts.push(part({ x: x + (Math.random() - 0.5) * 16, y: y - 3, vx: (Math.random() - 0.5) * 260 * p, vy: -Math.random() * 90 * p, life: 0.5 + Math.random() * 0.4, size: 5 + Math.random() * 8, color: W.th.decor === 'mine' ? 'rgba(120,100,90,0.5)' : 'rgba(235,220,190,0.6)', type: 'dot', drag: 3, g: -20 }));
@@ -1155,6 +1282,7 @@ function spawnMotes() {
     if (type === 'dust') { m.vy = -3; m.s = 1 + Math.random() * 1.5; }
     if (type === 'petals') { m.vx = 30 + Math.random() * 20; m.vy = 25 + Math.random() * 20; m.s = 3 + Math.random() * 2; }
     if (type === 'sand') { m.vx = 120 + Math.random() * 80; m.vy = 5; m.sw = 6; }
+    if (type === 'snow') { m.vx = -14; m.vy = 40 + Math.random() * 30; m.s = 1.5 + Math.random() * 2.2; }
     W.motes.push(m);
   }
 }
@@ -1563,11 +1691,11 @@ function drawLeo(L, t) {
   ctx.save(); ctx.translate(L.x, L.y + r * L.sq * 0.9);
   ctx.scale(1 + L.sq * 0.9, 1 - L.sq);
   const dragX = clamp(-L.vx * 0.012, -r * 0.3, r * 0.3), dragY = clamp(-L.vy * 0.01, -r * 0.3, r * 0.3);
-  const cols = ['#3b2519', '#6b4632', '#b0835a'];
+  const cols = ['#173a16', '#2f6e2a', '#7cc45f'];
   const widths = [0.24, 0.17, 0.09];
   const base = [0.62, 0.7, 0.62];
   const lens = [[0.32, 0.22], [0.2, 0.18], [0.1, 0.14]];
-  ctx.fillStyle = '#4a2f20'; ctx.beginPath(); ctx.arc(0, 0, r * 0.9, 0, TAU); ctx.fill();
+  ctx.fillStyle = '#21481e'; ctx.beginPath(); ctx.arc(0, 0, r * 0.9, 0, TAU); ctx.fill();
   ctx.lineCap = 'round';
   for (let layer = 0; layer < 3; layer++) {
     ctx.beginPath();
@@ -1586,7 +1714,7 @@ function drawLeo(L, t) {
   }
   // soft sheen
   const sh = ctx.createRadialGradient(-r * 0.35, -r * 0.45, 0, -r * 0.2, -r * 0.3, r * 0.9);
-  sh.addColorStop(0, 'rgba(255,220,180,0.28)'); sh.addColorStop(1, 'rgba(255,220,180,0)');
+  sh.addColorStop(0, 'rgba(225,255,200,0.28)'); sh.addColorStop(1, 'rgba(225,255,200,0)');
   ctx.fillStyle = sh; ctx.beginPath(); ctx.arc(0, 0, r * 1.05, 0, TAU); ctx.fill();
 
   // face
@@ -1601,7 +1729,7 @@ function drawLeo(L, t) {
     ctx.fillStyle = '#fffaf0'; ctx.beginPath(); ctx.ellipse(ex, eyY, er, er * 1.08, 0, 0, TAU); ctx.fill();
     ctx.fillStyle = '#1c120c'; ctx.beginPath(); ctx.arc(ex + lx, eyY + ly, er * 0.52, 0, TAU); ctx.fill();
     ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(ex + lx - er * 0.18, eyY + ly - er * 0.2, er * 0.18, 0, TAU); ctx.fill();
-    if (L.blink > 0) { ctx.fillStyle = '#5a3a28'; ctx.beginPath(); ctx.ellipse(ex, eyY, er * 1.1, er * 1.15, 0, 0, TAU); ctx.fill(); ctx.strokeStyle = '#2a170c'; ctx.lineWidth = r * 0.04; ctx.beginPath(); ctx.moveTo(ex - er, eyY + er * 0.2); ctx.quadraticCurveTo(ex, eyY + er * 0.6, ex + er, eyY + er * 0.2); ctx.stroke(); }
+    if (L.blink > 0) { ctx.fillStyle = '#2c5a27'; ctx.beginPath(); ctx.ellipse(ex, eyY, er * 1.1, er * 1.15, 0, 0, TAU); ctx.fill(); ctx.strokeStyle = '#2a170c'; ctx.lineWidth = r * 0.04; ctx.beginPath(); ctx.moveTo(ex - er, eyY + er * 0.2); ctx.quadraticCurveTo(ex, eyY + er * 0.6, ex + er, eyY + er * 0.2); ctx.stroke(); }
     ctx.strokeStyle = '#2a170c'; ctx.lineWidth = r * 0.07; ctx.lineCap = 'round'; ctx.beginPath();
     if (L.state === 'deflate') { ctx.moveTo(ex - s * er * 1.0, eyY - er * 1.35); ctx.lineTo(ex + s * er * 0.7, eyY - er * 0.85); }
     else if (L.state === 'inflate') { ctx.moveTo(ex - er * 0.8, eyY - er * 1.5); ctx.quadraticCurveTo(ex, eyY - er * 2, ex + er * 0.8, eyY - er * 1.5); }
@@ -1646,7 +1774,7 @@ function drawMotes() {
     if (type === 'fireflies') { const b = 0.5 + 0.5 * Math.sin(m.t * 3 + m.w * 9); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = b * 0.8; ctx.drawImage(SPR.warm.c, m.x - 14, m.y - 14, 28, 28); ctx.fillStyle = '#f4ffb0'; ctx.beginPath(); ctx.arc(m.x, m.y, m.s, 0, TAU); ctx.fill(); ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; lights.push({ x: m.x, y: m.y, r: 40, a: b * 0.5 }); }
     else if (type === 'petals') { ctx.save(); ctx.translate(m.x, m.y); ctx.rotate(m.rot); ctx.fillStyle = 'rgba(255,190,210,0.85)'; ctx.beginPath(); ctx.ellipse(0, 0, m.s, m.s * 0.5 * Math.abs(Math.cos(m.rot * 1.3)) + 0.5, 0, 0, TAU); ctx.fill(); ctx.restore(); }
     else if (type === 'sand') { ctx.strokeStyle = 'rgba(255,235,200,0.35)'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - 14, m.y); ctx.stroke(); }
-    else { ctx.globalAlpha = 0.55 + 0.3 * Math.sin(m.t * 2 + m.w * 5); ctx.fillStyle = type === 'dust' ? 'rgba(255,220,170,0.8)' : 'rgba(255,250,220,0.9)'; ctx.beginPath(); ctx.arc(m.x, m.y, m.s, 0, TAU); ctx.fill(); ctx.globalAlpha = 1; }
+    else { ctx.globalAlpha = 0.55 + 0.3 * Math.sin(m.t * 2 + m.w * 5); ctx.fillStyle = type === 'dust' ? 'rgba(255,220,170,0.8)' : type === 'snow' ? 'rgba(255,255,255,0.95)' : 'rgba(255,250,220,0.9)'; ctx.beginPath(); ctx.arc(m.x, m.y, m.s, 0, TAU); ctx.fill(); ctx.globalAlpha = 1; }
   }
 }
 function drawTexts() {

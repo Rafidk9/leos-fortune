@@ -1,6 +1,6 @@
 # Leo's Fortune (fan-made tribute)
 
-A browser platformer you can install on your phone like an app.
+A browser platformer you can install on your phone like an app. Ten levels, from Morning Meadow to the Golden Hoard.
 
 **Play:** https://rafidk9.github.io/leos-fortune/
 
